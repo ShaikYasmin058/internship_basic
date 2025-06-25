@@ -27,7 +27,10 @@ An interactive to-do checklist styled like a game.
 - ✔️ Add and remove tasks
 - ✔️ Clean UI with JavaScript interactivity
 - ✔️ No backend required
+## ✨ Author
 
----
+**Shaik Yasmin**  
+👩‍💻 B.Tech (CSE - AI)  
+📫 [LinkedIn](https://www.linkedin.com/in/shaik-yasmin-a09516308)
 
 
