@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Offline Password Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e9f5ff;
+      color: #000;
+      text-align: center;
+      padding: 40px;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark-mode {
+      background: #121212;
+      color: #ffffff;
+    }
+    .container {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .dark-mode .container {
+      background: #1e1e1e;
+    }
+    h1 {
+      color: #007bff;
+    }
+    .dark-mode h1 {
+      color: #66b2ff;
+    }
+    input[type="number"] {
+      padding: 8px;
+      width: 80px;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .options {
+      margin: 15px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .copy-btn {
+      margin-top: 10px;
+      background: #28a745;
+    }
+    .toggle-container {
+      margin-top: 15px;
+    }
+    .toggle-label {
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    #passwordText {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+      word-wrap: break-word;
+    }
+  </style>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function generatePassword() {
+      const length = parseInt(document.getElementById("length").value);
+      const useUpper = document.getElementById("uppercase").checked;
+      const useNumbers = document.getElementById("numbers").checked;
+      const useSymbols = document.getElementById("symbols").checked;
+
+      let charset = "abcdefghijklmnopqrstuvwxyz";
+      if (useUpper) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (useNumbers) charset += "0123456789";
+      if (useSymbols) charset += "!@#$%^&*()-_=+[{]}|;:,<.>/?";
+
+      if (charset.length === 0) {
+        alert("❗Please select at least one character type.");
+        return;
+      }
+
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
+      }
+
+      document.getElementById("passwordText").innerText = password;
+    }
+
+    function copyToClipboard() {
+      const password = document.getElementById("passwordText").innerText;
+      if (password) {
+        navigator.clipboard.writeText(password);
+        alert("✅ Password copied to clipboard!");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Offline Password Generator</h1>
+
+    <label>Password Length:</label><br />
+    <input type="number" id="length" min="4" max="32" value="12" /><br />
+
+    <div class="options">
+      <label>Include:</label><br />
+      <input type="checkbox" id="uppercase" checked /> Uppercase
+      <input type="checkbox" id="numbers" checked /> Numbers
+      <input type="checkbox" id="symbols" checked /> Symbols
+    </div>
+
+    <button onclick="generatePassword()">Generate Password</button>
+    <button class="copy-btn" onclick="copyToClipboard()">📋 Copy Password</button>
+
+    <p id="passwordText"></p>
+
+    <div class="toggle-container">
+      <input type="checkbox" id="darkToggle" onclick="toggleDarkMode()" />
+      <label for="darkToggle" class="toggle-label">🌙 Dark Mode</label>
+    </div>
+  </div>
+</body>
+</html>

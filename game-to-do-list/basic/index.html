@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎯 Game To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Game To-Do List</h1>
+
+    <div class="scoreboard">
+      ⭐ Points: <span id="points">0</span> |
+      🧠 Level: <span id="level">1</span>
+    </div>
+
+    <div class="input-section">
+      <input id="input" placeholder="Type a number or task..." />
+      <button onclick="handleInput()">Submit</button>
+      <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    </div>
+
+    <ul id="todo-list" class="todo-list"></ul>
+
+    <button onclick="toggleHistory()" id="toggle-history-btn">📜 Show Completed Tasks</button>
+
+    <div id="history-container" style="display: none;">
+      <h2>📜 Completed Task History</h2>
+      <ul id="history-list" class="history-list"></ul>
+    </div>
+
+    <button onclick="resetData()" id="reset-button">🧹 Reset Data</button>
+
+    <div class="instructions-box">
+      <h2>📘 To-Do List Instructions</h2>
+      <ol>
+        <li><strong>Display To-Do List:</strong> Enter '1' to view your current to-do list.</li>
+        <li><strong>Add a Task:</strong> Enter '2' and you'll be prompted to enter the task name.</li>
+        <li><strong>Mark as Completed:</strong> Enter '3' to complete a task (you’ll pick a number).</li>
+        <li><strong>Remove a Task:</strong> Enter '4' to delete a completed task.</li>
+        <li><strong>Quit:</strong> Enter '5' to exit the game.</li>
+      </ol>
+      <p>💡 Use the number commands or type a task directly to add. Have fun!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

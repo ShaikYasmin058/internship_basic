@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎯 Number Guess Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #b3e0ff, #e6f7ff);
+      text-align: center;
+      padding: 40px;
+      transition: background 0.3s ease;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="number"], input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      margin: 10px;
+      width: 80%;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .dark-mode {
+      background: #1c1c1c;
+      color: white;
+    }
+
+    .dark-box {
+      background-color: #333;
+    }
+
+    #message {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: #f1f1f1;
+      margin: 5px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .dark-mode ul li {
+      background: #444;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Number Guess Game</h1>
+    <p>Guess a number between 1 and 100</p>
+
+    <!-- ✅ Editable player name & guess form -->
+    <form method="POST" action="/guess">
+      <input type="number" name="guess" min="1" max="100" required placeholder="Enter guess" />
+      <br />
+      <input type="text" name="name" placeholder="Enter your name (optional)" />
+      <br />
+      <button type="submit">Submit</button>
+      <a href="/restart"><button type="button">🔄 Restart</button></a>
+    </form>
+
+    <!-- Feedback -->
+    <p id="message">{{ message }}</p>
+    <p>🎮 Attempts Left: <span id="attempts">{{ attempts }}</span></p>
+
+    <!-- 🏆 Leaderboard Section -->
+    <h3>🏆 Leaderboard (Top 5)</h3>
+    <ul>
+      {% for player, score in leaderboard %}
+        <li>{{ player }} - {{ score }} attempts</li>
+      {% endfor %}
+    </ul>
+
+    <!-- 🌙 Dark Mode Toggle -->
+    <button onclick="toggleDarkMode()" id="darkToggle">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      document.querySelector(".container").classList.toggle("dark-box");
+    }
+  </script>
+</body>
+</html>
