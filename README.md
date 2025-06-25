@@ -30,10 +30,4 @@ An interactive to-do checklist styled like a game.
 
 ---
 
-## 🚀 How to Run
 
-### 🔹 Python Projects (Flask Apps)
-
-```bash
-cd ProjectFolder
-python app.py
